@@ -6,12 +6,13 @@ Particuliers::Particuliers()
 }
 */
 
-Particuliers::Particuliers(int id, string n,
-                           string l, string c, int cp, string v, string mail,
-                           short dateNA, short dateNM,short dateNJ, string p, char s)
-//identifiant NOM
-//adrLibelle adrComplem adrCodPost adrVILLE mail
-//parDateN parPrenom parSexe
+Particuliers::Particuliers(
+            int id, string n,
+            string l, string c, int cp, string v, string mail,
+            int dateNA, int dateNM,int dateNJ, string p, char s)
+            //identifiant NOM
+            //adrLibelle adrComplem adrCodPost adrVILLE mail
+            //parDateN parPrenom parSexe
     :Clients(id,n,l,c,cp,v,mail)
 {
     this->SetdateNaissance(dateNA, dateNM, dateNJ);
@@ -23,7 +24,7 @@ Particuliers::~Particuliers()
 {
 }
 
-void Particuliers::SetdateNaissance(short a,short m,short j)
+void Particuliers::SetdateNaissance(int a,int m,int j)
 {
     dateNaissance.tm_sec  =0;
     dateNaissance.tm_min  =0;
@@ -61,7 +62,7 @@ void Particuliers::Setprenom(string val)
     {
         this->prenom = "";
         ostringstream oss;
-        oss<<"Erreur prenom : """<< val<<"""."<<endl;
+        oss<<"Erreur prenom : \""<< val<<"\". Absent ou trop long."<<endl;
         throw invalid_argument(oss.str());
     }
 }
@@ -69,7 +70,7 @@ void Particuliers::Setprenom(string val)
 void Particuliers::Setsexe(char val)
 {
     val=toupper(val);
-    if ( (val == 'F') || (val == 'M' ) )
+    if ( (val == 'F') || (val == 'H' ) )
     {
         this->sexe = val;
     }
@@ -77,7 +78,7 @@ void Particuliers::Setsexe(char val)
     {
         this->sexe = '\0';
         ostringstream oss;
-        oss<<"Erreur sexe : """<< val<<"""."<<endl;
+        oss<<"Erreur sexe : \""<< val<<"\". Attendu F ou H."<<endl;
         throw invalid_argument(oss.str());
     }
 }
@@ -92,6 +93,7 @@ string Particuliers::ToString()
         <<SEPARATOR<<Getsexe()
         ;
     */
+    /*
     oss << Clients::ToString() << SEPARATOR;
     oss.width(4);
     oss.fill('0');
@@ -102,6 +104,15 @@ string Particuliers::ToString()
     oss <<dateNaissance.tm_mday;
     oss.width();
     oss << SEPARATOR << Getprenom()
+        << SEPARATOR << Getsexe()
+        ;
+    */
+    oss << Clients::ToString()
+        << setfill('0')
+        << SEPARATOR << setw(4) << dateNaissance.tm_year+1900
+        << SEPARATOR << setw(2) << dateNaissance.tm_mon+1
+        << SEPARATOR << setw(2) << dateNaissance.tm_mday
+        << SEPARATOR << Getprenom()
         << SEPARATOR << Getsexe()
         ;
     return oss.str();
@@ -119,11 +130,11 @@ bool Particuliers::anniversaire()
         return false;
 }
 
-short Particuliers::age()
+int Particuliers::age()
 {
     std::time_t t = std::time(0);   // get time now
     std::tm* now = std::localtime(&t);
-    int a=now->tm_year - dateNaissance.tm_year;
+    int a=(now->tm_year - dateNaissance.tm_year) -1;
     if(    (dateNaissance.tm_mon > now->tm_mon)
         || (    (dateNaissance.tm_mon == now->tm_mon)
              && (dateNaissance.tm_mday >= now->tm_mday)

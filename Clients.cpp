@@ -34,8 +34,6 @@ string Clients::GetidentifiantF()
     oss.width(5);
     oss.fill('0');
     oss<<Getidentifiant();
-    //cout.width(0);
-    //cout.fill('');
     return oss.str();
 }
 
@@ -48,14 +46,14 @@ void Clients::Setnom(string val)
 {
     if ( (val.length() > 0) && (val.length() <= 50) )
     {
-        for (auto & c: val) c=toupper(c);
+        //for (auto & c: val) c=toupper(c);
         this->nom = val;
     }
     else
     {
         this->nom = "";
         ostringstream oss;
-        oss<<"Erreur nom : """<< val<<"""."<<endl;
+        oss<<"Erreur nom : \""<< val<<"\". Absent ou trop long."<<endl;
         throw invalid_argument(oss.str());
     }
 }
@@ -75,7 +73,7 @@ void Clients::Setmail(string val)
     {
         this->mail = "";
         ostringstream oss;
-        oss<<"Erreur mail : """<< val<<"""."<<endl;
+        oss<<"Erreur mail : \""<< val<<"\". Attendu avec un arobase."<<endl;
         throw invalid_argument(oss.str());
     }
 }

@@ -24,7 +24,8 @@ class Adresse
         int Getcode() { return code; }
         void Setcode(int val) { code = val; }
         string Getville() { return ville; }
-        void Setville(string val); //{ ville = val; }
+        //void Setville(string val) { ville = val; }
+        void Setville(string);
         string ToString();
     protected:
 

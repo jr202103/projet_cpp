@@ -2,11 +2,12 @@
 #include <ctime>
 #include "Clients.h"
 #include "Particuliers.h"
+#include "Professionnels.h"
 #include <sstream>
 
 using namespace std;
 
-
+/*
 string dateCurrentF()    //aaaa-mm-jj
 {
     std::time_t t = std::time(0);   // get time now
@@ -21,14 +22,12 @@ string dateCurrentF()    //aaaa-mm-jj
     oss << now->tm_mday;
     return oss.str();
 }
-
+*/
 
 int main()
 {
-    cout << dateCurrentF() <<endl;
     try
     {
-
         //identifiant NOM
         //adrLibelle adrComplem adrCodPost adrVILLE mail
         Clients *c1 = new Clients(
@@ -38,15 +37,13 @@ int main()
             "adrComp",
             31000,
             "Ville",
-            "mail@domain");
+            "mail@domain" );
         cout << "c1->ToString() = "<<c1->ToString() <<endl;
-        if(c1 != nullptr)
-            delete c1;
 
         //identifiant NOM
         //adrLibelle adrComplem adrCodPost adrVILLE mail
         //parDateNA parDateNM parDateNJ parPrenom parSexe
-        Particuliers *p1 = new Particuliers(
+        Particuliers *par1 = new Particuliers(
             1,
             "nom",
             "adrLib",
@@ -54,21 +51,55 @@ int main()
             31000,
             "Ville",
             "mail@domain",
-            2020,
-            4,
-            28,
+            2000,
+            04,
+            29,
             "preNom",
-            'F'
-        );
-        cout << "p1->ToString() = "<<p1->ToString() <<endl;
-        cout << "p1->anniversaire() = "<<p1->anniversaire() <<endl;
-        cout << "p1->age() = "<<p1->age() <<endl;
+            'F' );
+        cout << "par1->ToString() = "<<par1->ToString() <<endl;
+        cout << "par1->anniversaire() = "<<par1->anniversaire() <<endl;
+        cout << "par1->age() = "<<par1->age() <<endl;
 
+        //identifiant NOM
+        //adrLibelle adrComplem adrCodPost adrVILLE mail
+        //proSiret proStatut
+        //proAdrLibelle proAdrComplem proAdrCodPost proAdrVILLE
+        Professionnels *pro1 = new Professionnels(
+            1,
+            "nom",
+            "adrLib",
+            "adrComp",
+            31000,
+            "Ville",
+            "mail@domain",
+            "12345678901234",
+            "SA",
+            "adrProLib",
+            "adrProComp",
+            31000,
+            "VillePro"
+        );
+        cout << "pro1->ToString() = "<<pro1->ToString() <<endl;
+
+        if(pro1 != nullptr)
+        {
+            delete pro1;
+            pro1=nullptr;
+        }
         if(c1 != nullptr)
+        {
             delete c1;
+            c1=nullptr;
+        }
+        if(par1 != nullptr)
+        {
+            delete par1;
+            par1=nullptr;
+        }
 
     }//try
-    catch(range_error &e)
+
+    catch(invalid_argument &e)
     {
         cout<<"Exception : "<<e.what();
     }

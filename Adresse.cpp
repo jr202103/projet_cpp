@@ -29,7 +29,7 @@ void Adresse::Setville(string val)
     {
         this->ville = "";
         ostringstream oss;
-        oss<<"Erreur ville : """<< val<<"""."<<endl;
+        oss<<"Erreur ville : \""<< val<<"\". Absente."<<endl;
         throw invalid_argument(oss.str());
     }
 }

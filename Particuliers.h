@@ -6,6 +6,7 @@
 #include <ctime>
 #include <iostream>
 #include <sstream>
+#include <iomanip>  //setw()
 
 #define SEPARATOR ";"
 //#define SEPARATOR "\t"
@@ -18,22 +19,22 @@ class Particuliers : public Clients
         //Particuliers();
         Particuliers(int, string,
                      string, string, int, string, string,
-                     short, short, short, string, char);
-                //identifiant NOM
-                //adrLibelle adrComplem adrCodPost adrVILLE mail
-                //parDateNA parDateNM parDateNJ parPrenom parSexe
+                     int, int, int, string, char);
+            //identifiant NOM
+            //adrLibelle adrComplem adrCodPost adrVILLE mail
+            //parDateNA parDateNM parDateNJ parPrenom parSexe
         virtual ~Particuliers();
 
         tm GetdateNaissance() { return dateNaissance; }
         string dateNaissanceF();  //aaaa-mm-jj
-        void SetdateNaissance(short ,short ,short);//(tm val) { dateNaissance = val; }
+        void SetdateNaissance(int ,int ,int);//(tm val) { dateNaissance = val; }
         string Getprenom() { return prenom; }
         void Setprenom(string val) ;//{ prenom = val; }
         char Getsexe() { return sexe; }
         void Setsexe(char val) ;//{ sexe = val; }
-        virtual string ToString() override;
+        virtual string ToString() ;//override;
         bool anniversaire();
-        short age();
+        int age();
 
     protected:
 
