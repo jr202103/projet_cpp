@@ -19,8 +19,6 @@
 #include <string>
 //using namespace std;
 
-//#define DB_FILE_NAME "C:\\Users\\Jerome.RATIER\\Documents\\reskilling\\qt\\prj\\QT_4__40__0\\QT\\Exos\\QtExo10\\chinook.db"
-//#define DB_FILE_NAME "C:\\Users\\Jerome.RATIER\\Documents\\reskilling\\qt\\prj\\QT_4__40__0\\QT\\chinook.db"
 #define DB_FILE_NAME "C:\\Users\\Jerome.RATIER\\Documents\\reskilling\\qt\\prj\\projet_cpp_qt\\BdComptes_test.db"
 #define FILE_OUT_OP_ANOMALIES "C:\\Users\\Jerome.RATIER\\Documents\\reskilling\\qt\\prj\\projet_cpp_qt\\Anomalies.log"
 

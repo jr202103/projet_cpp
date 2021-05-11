@@ -728,7 +728,7 @@ void MainWindow::on_pushBtnImport_clicked()
     }
 
     //fileOut
-    string fileOutName = "FILE_OUT_OP_ANOMALIES";
+    string fileOutName = FILE_OUT_OP_ANOMALIES;
     //ofstream fileOut(fileOutName);
     ofstream fileOut;
     fileOut.open(fileOutName, ios_base::app);
